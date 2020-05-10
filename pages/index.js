@@ -1,20 +1,12 @@
-import { Box, Flex, Text, Link } from 'rebass'
+import { Heading, Box, Flex, Text, Link as A } from 'rebass'
+import NavBar from '../components/navbar'
+import Footer from '../components/footer'
 
 const Page = () => (
-  <Flex px={2} color="white" bg="black" alignItems="center">
-    <Text p={2} fontWeight="bold">
-      React Weather
-    </Text>
-    <Box mx="auto" />
-    <Link
-      variant="nav"
-      href="https://github.com/denniskigen/react-weather-next"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      GitHub
-    </Link>
-  </Flex>
+  <Box as="main" sx={{ bg: 'snow' }}>
+    <NavBar />
+    <Footer />
+  </Box>
 )
 
 export default Page
