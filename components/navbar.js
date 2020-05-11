@@ -17,7 +17,7 @@ const ColorSwitcher = (props) => {
     <IconButton
       {...props}
       onClick={(e) => setMode(mode === 'dark' ? 'light' : 'dark')}
-      title="Cycle Color Mode"
+      title="Toggle Color Mode"
       sx={{
         borderRadius: 9999,
         transition: 'box-shadow .125s ease-in-out',
@@ -41,9 +41,10 @@ export default () => {
       as="nav"
       key="nav"
       sx={{
-        bg: mode === 'dark' ? 'darkless' : 'red',
+        bg: mode === 'dark' ? 'lessdark' : 'black',
         color: 'nav',
-        py: 3,
+        py: 2,
+        px: 2,
       }}
     >
       <Container
@@ -55,17 +56,27 @@ export default () => {
             color: mode === 'dark' ? 'red' : 'white',
             textDecoration: 'none',
             mr: [3, 4],
-            ':focus,:hover': { color: mode === 'dark' ? 'red' : 'white' },
+            ':focus,:hover': { color: mode === 'dark' ? 'white' : 'red' },
           },
         }}
       >
         <Link href="/" passHref>
-          <Text as="a" variant="logo" sx={{ flex: '1 1 auto' }}>
+          <Text
+            as="a"
+            variant="logo"
+            fontWeight="bold"
+            sx={{ flex: '1 1 auto' }}
+          >
             React&nbsp;Weather
           </Text>
         </Link>
-        <Link href="/about" passHref>
+        <Link href="#" passHref>
           <NavLink>About</NavLink>
+        </Link>
+        <Link href="//github.com/denniskigen/react-weather-next" passHref>
+          <NavLink target="_blank" rel="noopener noreferrer">
+            GitHub
+          </NavLink>
         </Link>
         <ColorSwitcher />
       </Container>

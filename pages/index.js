@@ -1,4 +1,4 @@
-import { Heading, Box, Flex, Text, Link as A } from 'rebass'
+import { Box } from 'rebass'
 import NavBar from '../components/navbar'
 import Footer from '../components/footer'
 

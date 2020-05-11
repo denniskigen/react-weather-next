@@ -1,15 +1,14 @@
-import base from '@rebass/preset'
+import base from '@theme-ui/preset-base'
+import merge from 'lodash.merge'
 
-export const breakpoints = [32, 48, 64].map((w) => `${w}em`)
-
+export const breakpoints = [32, 48, 64, 96, 128].map((w) => `${w}em`)
 export const space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
-
 export const fontSizes = [12, 16, 20, 24, 32, 48, 64, 96, 128]
 
 export const palette = {
   darker: '#121217',
   dark: '#17171d',
-  darkless: '#252429',
+  lessdark: '#252429',
   black: '#1f2d3d',
   steel: '#273444',
   slate: '#3c4858',
@@ -22,40 +21,64 @@ export const palette = {
   yellow: '#f1c40f',
   green: '#33d6a6',
   cyan: '#5bc0de',
-  blue: '#338eda',
-  twitter: '#1da1f2',
-  facebook: '#3b5998',
-  instagram: '#e1306c'
+  blue: '#338eda'
 }
 
-const theme = {
-  ...base,
+const theme = merge(base, {
   breakpoints,
   space,
   fontSizes,
   colors: {
     ...palette,
     text: palette.black,
-    background: palette.white
+    background: palette.snow,
+    accent: palette.blue,
+    nav: palette.white,
+    modes: {
+      dark: {
+        text: palette.white,
+        background: palette.dark,
+        elevated: palette.lessdark,
+        sunken: palette.darker,
+        border: palette.lessdark,
+        placeholder: palette.slate,
+        secondary: palette.muted,
+        muted: palette.muted,
+        accent: palette.cyan,
+        invertedPrimary: palette.darker,
+        invertedText: palette.red,
+        nav: palette.red,
+      },
+    },
   },
   fonts: {
-    body: 'system-ui, sans-serif',
+    body:
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     heading: 'inherit',
-    monospace: 'Menlo, monospace',
+    monospace: '"SFMono-Regular", "Roboto Mono", Menlo, Consolas, monospace',
+  },
+  lineHeights: {
+    heading: 1.125,
+    body: 1.5,
   },
   fontWeights: {
     body: 400,
     heading: 900,
     bold: 700,
   },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.125
+  sizes: {
+    ultrawide: 1536,
+    wide: 1200,
+    subwide: 896,
+    container: 768,
+    subcontainer: 640,
+    narrowplus: 576,
+    narrow: 512
   },
   text: {
     heading: {
-      fontFamily: 'heading',
       fontWeight: 'heading',
+      lineHeight: 'heading',
       lineHeight: 'heading',
       letterSpacing: 'heading',
     },
@@ -66,30 +89,31 @@ const theme = {
       letterSpacing: 'heading',
       fontSize: [5, 6, 7],
     },
-    caps: {
+    logo: {
       textTransform: 'uppercase',
-      letterSpacing: 'caps',
+      letterSpacing: 'headline',
+      fontWeight: 'heading',
     },
   },
-  styles: base.styles,
+  
+  styles: {},
   variants: {
     container: {
       width: '100%',
       maxWidth: 'container',
       mx: 'auto',
-      px: 2
+      px: 2,
     }
   }
-}
+})
 
 theme.styles.root = {
   fontFamily: theme.fonts.body,
   lineHeight: theme.lineHeights.body,
   fontWeight: theme.fontWeights.body,
+  color: theme.colors.text,
   margin: 0,
   minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column'
 }
 
 export default theme
